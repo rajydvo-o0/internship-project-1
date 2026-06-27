@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple E-Commerce Website</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+    {% comment %}  Add new Feature from here  {% endcomment %}
+    {% if not user.is_authenticated %}
+
+<div id="loginPopup" class="popup-overlay">
+    <div class="popup-box">
+        <h2>Welcome to SangamStore</h2>
+
+        <p>
+            Login Required!
+        </p>
+
+        <a href="{% url 'login' %}" class="popup-login-btn">
+            Login Now
+        </a>
+
+        <button onclick="closePopup()" class="popup-close-btn">
+            Continue Browsing
+        </button>
+    </div>
+</div>
+
+{% endif %}
+
+    {% comment %} This are main part of Home page... {% endcomment %}
+    <div id="toast" class="toast">
+        Product added to cart successfully!
+    </div>
+
+<!-- Implement is here -->
+<div class="main-content">    
+    <h1>Our Products</h1>
+    <div class="container">
+        {% for product in products %}
+
+        <div class="card">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+            <h3>
+                <a href="{% url 'product_detail' product.id %}">
+                    {{ product.name }}
+                </a>
+            </h3>
+
+            <p>{{ product.description }}</p>
+            <p class="price">
+                ₹{{ product.price }}
+            </p>
+            <a href="{% url 'add_to_cart' product.id %}"
+               class="btn"
+               onclick="showToast()">
+               Add to Cart
+            </a>
+        </div>
+
+        {% empty %}
+
+<div class="empty-products">
+    <h2>No products available in this category</h2>
+</div>
+        {% endfor %}
+    </div>
+</div>
+    <div class="footer">
+        © 2026 SangamStore | Built with Django by Sangam Yadav
+    </div>
+
+    {% load static %}
+
+<script src="{% static 'store/js/main.js' %}"></script>
+<script src="{% static 'store/js/navbar.js' %}"></script>
+
+</body>
+</html>

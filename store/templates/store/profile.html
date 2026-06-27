@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>My Profile</title>
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+<div class="main-content">
+<h1>My Profile</h1>
+
+<div class="card profile-card">
+
+    <h2>{{ user.first_name|default:"User" }}</h2>
+
+    <p>
+        <strong>Email:</strong>
+        {{ user.email }}
+    </p>
+
+    <p>
+        <strong>Username:</strong>
+        {{ user.username }}
+    </p>
+
+    <p>
+        <strong>Joined:</strong>
+        {{ user.date_joined|date:"d M Y" }}
+    </p>
+
+    <p>
+        <strong>Total Orders:</strong>
+        {{ total_orders }}
+    </p>
+
+</div>
+</div>
+
+<div class="footer">
+    © 2026 SangamStore | Built with Django by Sangam Yadav
+</div>
+
+{% load static %}
+
+<script src="{% static 'store/js/main.js' %}"></script>
+<script src="{% static 'store/js/navbar.js' %}"></script>
+
+</body>
+</html>

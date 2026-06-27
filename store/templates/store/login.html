@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+<div class="main-content">
+<h1>Login</h1>
+
+{% if form.errors %}
+<div class="error-message">
+    Login failed. Please check your credentials and try again.
+</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <p>
+        <label>Email ID:</label>
+        <input
+            type="email"
+            name="username"
+            placeholder="Enter your Email-ID"
+            required
+        >
+    </p>
+
+    <p>
+        <label>Password:</label>
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter your Password"
+            required
+        >
+    </p>
+
+    <button type="submit">Login</button>
+</form>
+
+<p>
+    Don't have an account?
+    <a href="/register/">Register</a>
+</p>
+</div>
+<div class="footer">
+    © 2026 SangamStore | Built with Django by Sangam Yadav
+</div>
+
+{% load static %}
+
+<script src="{% static 'store/js/main.js' %}"></script>
+<script src="{% static 'store/js/navbar.js' %}"></script>
+
+</body>
+</html>
