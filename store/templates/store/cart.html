@@ -8,83 +8,45 @@
 </head>
 <body>
     {% include 'includes/navbar.html' %}
-
 <div class="main-content">
-
     <h1>Your Cart</h1>
-
     {% if cart_items %}
-
+    
     <div class="container">
-
         {% for item in cart_items %}
-
+        
         <div class="card">
-
             <h3>{{ item.product.name }}</h3>
-
+            
             <div class="quantity-controls">
-
-                <a class="qty-btn"
-                   href="{% url 'decrease_cart' item.product.id %}">
-                    −
-                </a>
-
+                <a class="qty-btn"href="{% url 'decrease_cart' item.product.id %}"> − </a>
                 <span class="qty-number">
                     {{ item.quantity }}
                 </span>
-
-                <a class="qty-btn"
-                   href="{% url 'increase_cart' item.product.id %}">
-                    +
-                </a>
-
+                <a class="qty-btn"href="{% url 'increase_cart' item.product.id %}"> + </a>
             </div>
-
-            <p class="price">
-                ₹{{ item.subtotal }}
-            </p>
-
-            <a class="btn remove-btn"
-               href="{% url 'remove_from_cart' item.product.id %}"
-               onclick="return confirmRemove()">
-                Remove
-            </a>
-
+            
+            <p class="price"> ₹{{ item.subtotal }}</p>
+            <a class="btn remove-btn"href="{% url 'remove_from_cart' item.product.id %}"onclick="return confirmRemove()">Remove</a>
         </div>
-
+        
         {% endfor %}
-
     </div>
-
-    <h2 style="text-align:center;">
-        Total: ₹{{ total }}
-    </h2>
-
+    
+    <h2 style="text-align:center;">Total: ₹{{ total }}</h2>
     <div style="text-align:center;">
-        <a class="btn" href="{% url 'checkout' %}">
-            Checkout
-        </a>
+        <a class="btn" href="{% url 'checkout' %}">Checkout</a>
     </div>
-
     {% else %}
-
+    
     <div class="empty-cart">
-
         <h2>🛒 Cart is Empty</h2>
-
-        <p>
-            Add some products to continue shopping.
-        </p>
-
-        <a href="/" class="btn">
-            Continue Shopping
-        </a>
-
+        <p>Add some products to continue shopping.</p>
+        <a href="/" class="btn">Continue Shopping</a>
     </div>
-
+    
     {% endif %}
-
+    
 </div>
 
 <div class="footer">
