@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-
 class CustomUserCreationForm(UserCreationForm):
     
     first_name = forms.CharField(
@@ -26,8 +25,6 @@ class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         self.fields['password1'].help_text = ""
         self.fields['password2'].help_text = ""
-        
         self.fields['password1'].label = "Password (Must be a Unique Password)"
