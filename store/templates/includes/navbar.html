@@ -26,36 +26,18 @@
 
         {% else %}
 
-            <a href="{% url 'login' %}">
-                Login
-            </a>
-
-            <a href="{% url 'register' %}">
-                Register
-            </a>
-
+            <a href="{% url 'login' %}"> Login </a>
+            <a href="{% url 'register' %}"> Register </a>
         {% endif %}
-
     </div>
-
 </div>
 
 {% if categories %}
+
 <div class="category-bar">
-
-    <a href="/"
-       class="category-btn {% if not selected_category %}active-category{% endif %}">
-        All
-    </a>
-
+    <a href="/" class="category-btn {% if not selected_category %}active-category{% endif %}"> All </a>
     {% for category in categories %}
-
-    <a href="/?category={{ category.id }}"
-       class="category-btn {% if selected_category == category.id|stringformat:'s' %}active-category{% endif %}">
-        {{ category.name }}
-    </a>
-
+    <a href="/?category={{ category.id }}" class="category-btn {% if selected_category == category.id|stringformat:'s' %}active-category{% endif %}"> {{ category.name }} </a>
     {% endfor %}
-
 </div>
 {% endif %}
