@@ -1,61 +1,27 @@
 <div class="navbar">
-
     <div class="nav-left">
-
-        <a href="/" class="brand">
-            SangamStore
-        </a>
-
+        <a href="/" class="brand">SangamStore</a>
         <a href="/">Home</a>
-
-        <a href="/cart/">
-            Cart ({{ cart_count }})
-        </a>
-
+        <a href="/cart/"> Cart ({{ cart_count }}) </a>
         <form method="GET" action="/" class="search-box">
-
-            <input
-                type="text"
-                name="q"
-                placeholder="Search products..."
-                value="{{ query|default:'' }}"
-            >
-
-            <button type="submit" class="search-icon">
-                🔎
-            </button>
-
+            <input type="text" name="q" placeholder="Search products..." value="{{ query|default:'' }}">
+            <button type="submit" class="search-icon"> 🔎 </button>
         </form>
-
     </div>
 
     <div class="nav-right">
-
         {% if user.is_authenticated %}
-
             <span class="welcome-user">
                 Welcome, {{ user.first_name|default:user.username }}
             </span>
 
-            <a href="/my-orders/">
-                My Orders
-            </a>
+            <a href="/my-orders/"> My Orders </a>
 
-            <!-- Profile Dropdown -->
             <div class="profile-dropdown">
-
                 <div id="profileMenu" class="profile-menu">
-
-                    <a href="{% url 'profile' %}">
-                        My Profile
-                    </a>
-
-                    <a href="{% url 'logout' %}">
-                        Logout
-                    </a>
-
+                    <a href="{% url 'profile' %}"> My Profile </a>
+                    <a href="{% url 'logout' %}"> Logout </a>
                 </div>
-
             </div>
 
         {% else %}
