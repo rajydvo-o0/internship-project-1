@@ -8,36 +8,25 @@
 </head>
 <body>
     {% include 'includes/navbar.html' %}
-
     {% comment %}  Add new Feature from here  {% endcomment %}
     {% if not user.is_authenticated %}
 
 <div id="loginPopup" class="popup-overlay">
     <div class="popup-box">
         <h2>Welcome to SangamStore</h2>
-
-        <p>
-            Login Required!
-        </p>
-
-        <a href="{% url 'login' %}" class="popup-login-btn">
-            Login Now
-        </a>
-
-        <button onclick="closePopup()" class="popup-close-btn">
-            Continue Browsing
-        </button>
+        <p> Login Required! </p>
+        <a href="{% url 'login' %}" class="popup-login-btn"> Login Now </a>
+        <button onclick="closePopup()" class="popup-close-btn"> Continue Browsing </button>
     </div>
 </div>
 
 {% endif %}
-
     {% comment %} This are main part of Home page... {% endcomment %}
+    
     <div id="toast" class="toast">
         Product added to cart successfully!
     </div>
 
-<!-- Implement is here -->
 <div class="main-content">    
     <h1>Our Products</h1>
     <div class="container">
@@ -45,21 +34,10 @@
 
         <div class="card">
             <img src="{{ product.image }}" alt="{{ product.name }}">
-            <h3>
-                <a href="{% url 'product_detail' product.id %}">
-                    {{ product.name }}
-                </a>
-            </h3>
-
+            <h3> <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a> </h3>
             <p>{{ product.description }}</p>
-            <p class="price">
-                ₹{{ product.price }}
-            </p>
-            <a href="{% url 'add_to_cart' product.id %}"
-               class="btn"
-               onclick="showToast()">
-               Add to Cart
-            </a>
+            <p class="price">₹{{ product.price }}</p>
+            <a href="{% url 'add_to_cart' product.id %}" class="btn" onclick="showToast()"> Add to Cart </a>
         </div>
 
         {% empty %}
